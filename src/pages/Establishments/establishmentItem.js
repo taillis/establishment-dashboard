@@ -1,12 +1,15 @@
 import React, { memo } from "react";
-import { Card } from "antd";
+import { Card, Typography } from "antd";
 import Map from "../../components/map";
 
+const moment = require("moment");
+
 const { Meta } = Card;
+const { Text } = Typography;
 
 const EstablishmentItem = ({ establishment, ...props }) => {
   return (
-    <Card hoverable style={{ width: 240 }}>
+    <Card props={props} hoverable style={{ width: 300, marginTop: 5 }}>
       <div
         style={{
           height: "300px",
@@ -23,11 +26,16 @@ const EstablishmentItem = ({ establishment, ...props }) => {
           hideText={true}
         />
       </div>
-      <Meta
-        style={{ marginTop: 10 }}
-        title={establishment?.name}
-        description={establishment?.email}
-      />
+      <Meta style={{ margin: "10px 0" }} title={establishment?.name} />
+      <Text>Email de contato: {establishment?.email}</Text>
+      <br />
+      <Text>
+        Distância: {(establishment?.dist.calculated / 1000).toFixed(2) + " Km"}
+      </Text>
+      <br />
+      <Text>
+        Entrou em: {moment(establishment?.createdAt).format("DD/MM/YYYY")}
+      </Text>
     </Card>
   );
 };

@@ -40,10 +40,12 @@ const Profile = ({ ...props }) => {
           location,
         });
 
+        setError("");
         setSuccess(response?.data?.message);
 
         props.history.push("/profile");
       } catch (err) {
+        setSuccess("");
         setError(err?.response?.data?.message);
       }
     }
@@ -60,10 +62,12 @@ const Profile = ({ ...props }) => {
           currentPassword,
         });
 
+        setError("");
         setSuccess(response?.data?.message);
 
         props.history.push("/profile");
       } catch (err) {
+        setSuccess("");
         setError(err?.response?.data?.message);
       }
     }
@@ -96,14 +100,17 @@ const Profile = ({ ...props }) => {
   return (
     <Layout>
       <Navigation props={props} />
-      <Content style={{ padding: "0 50px", margin: "10px 0 0 0" }}>
+      <Content style={{ padding: "0 100px", margin: "10px 0 0 0" }}>
         <Row>
           <Col style={{ width: "100%" }}>
-            <Tabs defaultActiveKey="1">
-              <Text type="success">{success && success}</Text>
-              <Text type="warning">{error && error}</Text>
-
-              <TabPane tab="Perfil" key="1">
+            <Text key="successTextProfile" type="success">
+              {success && success}
+            </Text>
+            <Text key="errorTextProfile" type="warning">
+              {error && error}
+            </Text>
+            <Tabs defaultActiveKey="profileTab">
+              <TabPane tab="Perfil" key="profileTab">
                 <ProfileForm
                   establishment={establishment}
                   setName={setName}
@@ -113,7 +120,7 @@ const Profile = ({ ...props }) => {
                   handleDelete={handleDelete}
                 />
               </TabPane>
-              <TabPane tab="Segurança" key="2">
+              <TabPane tab="Segurança" key="securityTab">
                 <SecurityForm
                   setPassword={setPassword}
                   setPasswordConfirm={setPasswordConfirm}
@@ -125,7 +132,14 @@ const Profile = ({ ...props }) => {
           </Col>
         </Row>
       </Content>
-      <Footer style={{ textAlign: "center" }}>
+      <Footer
+        style={{
+          textAlign: "center",
+          bottom: 0,
+          position: "fixed",
+          width: "100%",
+        }}
+      >
         Criado por Taillis Mariquito
       </Footer>
     </Layout>

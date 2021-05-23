@@ -30,6 +30,10 @@ const Register = ({ ...props }) => {
     console.log({ coords });
     setLocationLoaded(true);
     setCurrentLocation(coords);
+    setLocation({
+      longitude: coords.lng,
+      latitude: coords.lat,
+    });
   };
 
   if (!locationLoaded) getCurrentLocation(handleLocation);
@@ -109,6 +113,18 @@ const Register = ({ ...props }) => {
             onChange={(e) => setPasswordConfirm(e.target.value)}
           />
         </Form.Item>
+        <Row>
+          <Col
+            style={{
+              width: "100%",
+            }}
+          >
+            <p>
+              Utilize o marcador para selecionar a localização do seu
+              estabelecimento
+            </p>
+          </Col>
+        </Row>
         <Row>
           <Col
             style={{
