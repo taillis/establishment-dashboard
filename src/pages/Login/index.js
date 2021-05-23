@@ -19,7 +19,7 @@ const Login = ({ ...props }) => {
         const response = await api.post("/auth/login", { email, password });
 
         login(response.data.token);
-        setData(response.data?._doc);
+        setData(response.data);
 
         props.history.push("/profile");
       } catch (err) {

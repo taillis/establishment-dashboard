@@ -7,6 +7,8 @@ import Map from "../../components/map";
 
 import api from "../../services/api";
 
+import getCurrentLocation from "../../services/location";
+
 const Register = ({ ...props }) => {
   const [name, setName] = useState();
   const [email, setEmail] = useState();
@@ -18,12 +20,26 @@ const Register = ({ ...props }) => {
   });
   const [error, setError] = useState("");
 
+  const [locationLoaded, setLocationLoaded] = useState(false);
+  const [currentLocation, setCurrentLocation] = useState({
+    lat: 0,
+    lng: 0,
+  });
+
+  const handleLocation = (coords) => {
+    console.log({ coords });
+    setLocationLoaded(true);
+    setCurrentLocation(coords);
+  };
+
+  if (!locationLoaded) getCurrentLocation(handleLocation);
+
   const handleRegister = async (e) => {
     if (!name || !email || !password) {
-      this.setState({ error: "Preencha todos os dados para se cadastrar" });
+      setError("Preencha todos os dados para se cadastrar");
     } else {
       try {
-        const response = await api.post("/establishment/register", {
+        const response = await api.put("/establishment/register", {
           name,
           email,
           password,
@@ -32,7 +48,7 @@ const Register = ({ ...props }) => {
         });
 
         login(response.data.token);
-        setData(response.data?._doc);
+        setData(response.data);
 
         props.history.push("/profile");
       } catch (err) {
@@ -100,7 +116,11 @@ const Register = ({ ...props }) => {
               height: "300px",
             }}
           >
-            <Map setLocation={setLocation}></Map>
+            <Map
+              initialLocation={currentLocation}
+              draggable={true}
+              setLocation={setLocation}
+            ></Map>
           </Col>
         </Row>
         <hr />

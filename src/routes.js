@@ -5,6 +5,8 @@ import { isAuthenticated } from "./services/auth";
 
 import Register from "./pages/Register";
 import Login from "./pages/Login";
+import Profile from "./pages/Profile";
+import Establishments from "./pages/Establishments";
 
 const PrivateRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -22,10 +24,10 @@ const PrivateRoute = ({ component: Component, ...rest }) => (
 const Routes = () => (
   <BrowserRouter>
     <Switch>
-      <Route exact path="/" component={() => <h1>Bem-vindo</h1>} />
+      <Route exact path="/" component={Establishments} />
       <Route path="/login" component={Login} />
       <Route path="/register" component={Register} />
-      <PrivateRoute path="/profile" component={() => <h1>App</h1>} />
+      <PrivateRoute path="/profile" component={Profile} />
       <Route path="*" component={() => <h1>Page not found</h1>} />
     </Switch>
   </BrowserRouter>
