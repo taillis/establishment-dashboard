@@ -10,6 +10,9 @@ export const setData = ({ _id, name, email }) => {
 export const login = (token) => {
   localStorage.setItem(TOKEN_KEY, token);
 };
-export const logout = () => {
+export const logout = (callback) => {
   localStorage.removeItem(TOKEN_KEY);
+  localStorage.removeItem(USER_DATA_KEY);
+
+  if (callback && typeof callback === "function") callback();
 };
