@@ -138,8 +138,6 @@ const Establishments = ({ ...props }) => {
       <Footer
         style={{
           textAlign: "center",
-          bottom: 0,
-          position: "fixed",
           width: "100%",
         }}
       >
