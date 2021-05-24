@@ -100,7 +100,7 @@ const Profile = ({ ...props }) => {
   return (
     <Layout>
       <Navigation props={props} />
-      <Content style={{ padding: "0 100px", margin: "10px 0 0 0" }}>
+      <Content className="main-container">
         <Row>
           <Col style={{ width: "100%" }}>
             <Text key="successTextProfile" type="success">

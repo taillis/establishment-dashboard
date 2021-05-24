@@ -37,7 +37,6 @@ const Establishments = ({ ...props }) => {
   });
 
   const handleLocation = (coords) => {
-    console.log({ coords });
     setLocationLoaded(true);
     setCurrentLocation(coords);
   };
@@ -56,7 +55,6 @@ const Establishments = ({ ...props }) => {
       setIsEstablishmentLoaded(true);
       setEstablishments(response?.data);
     } catch (err) {
-      console.log(err);
       setError(err?.response?.data?.message);
     }
   };
@@ -66,9 +64,7 @@ const Establishments = ({ ...props }) => {
   return (
     <Layout>
       <Navigation props={props} />
-      <Content
-        style={{ padding: "0 50px", margin: "10px 0 0 0", minHeight: "100vh" }}
-      >
+      <Content className="main-container">
         <Text type="warning">{error && error}</Text>
         <Row>
           <Col span={12}>
@@ -119,7 +115,7 @@ const Establishments = ({ ...props }) => {
             <Empty
               image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
               imageStyle={{
-                height: 60,
+                height: 100,
               }}
               description={
                 <span>Nenhum estabelecimento de acordo com seu critério</span>
