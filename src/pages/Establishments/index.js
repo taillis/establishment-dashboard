@@ -110,8 +110,8 @@ const Establishments = ({ ...props }) => {
         >
           Estabelecimentos perto de você
         </Title>
-        <Row justify="space-around" style={{ display: "flex" }}>
-          {establishments.length <= 0 ? (
+        {establishments.length <= 0 ? (
+          <Row justify="space-around" style={{ display: "flex" }}>
             <Empty
               image="https://gw.alipayobjects.com/zos/antfincdn/ZHrcdLPrvN/empty.svg"
               imageStyle={{
@@ -130,10 +130,12 @@ const Establishments = ({ ...props }) => {
                 Registre o seu agora
               </Button>
             </Empty>
-          ) : (
+          </Row>
+        ) : (
+          <Row justify="space-between" style={{ display: "flex" }}>
             <EstablishmentsList establishments={establishments} />
-          )}
-        </Row>
+          </Row>
+        )}
       </Content>
       <Footer
         style={{
