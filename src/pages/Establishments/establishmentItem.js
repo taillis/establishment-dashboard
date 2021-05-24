@@ -9,7 +9,7 @@ const { Text } = Typography;
 
 const EstablishmentItem = ({ establishment, ...props }) => {
   return (
-    <Card props={props} hoverable style={{ width: 300, marginTop: 5 }}>
+    <Card props={props} hoverable style={{ width: 350, marginTop: 5 }}>
       <div
         style={{
           height: "300px",
